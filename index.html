@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI in CRM Marketing Cloud - Comprehensive Use Cases</title>
+    <style>
+        :root {
+            --primary-color: #10b981;
+            --secondary-color: #3b82f6;
+            --accent-color: #f59e0b;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-color: #334155;
+            --crm-green: #10b981;
+            --marketing-blue: #3b82f6;
+            --campaign-orange: #f59e0b;
+            --engagement-purple: #8b5cf6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--bg-color), #0b1220);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--crm-green), var(--marketing-blue), var(--campaign-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .nav-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border-color: var(--primary-color);
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(45deg, var(--crm-green), var(--marketing-blue));
+            border: none;
+        }
+
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            border-color: rgba(255,255,255,0.1);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--crm-green), var(--marketing-blue), var(--campaign-orange));
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .icon.ml { background: rgba(16, 185, 129, 0.2); color: var(--crm-green); }
+        .icon.gen { background: rgba(59, 130, 246, 0.2); color: var(--marketing-blue); }
+        .icon.ag { background: rgba(139, 92, 246, 0.2); color: var(--engagement-purple); }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-content {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(45deg, var(--crm-green), var(--marketing-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(255,255,255,0.1);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .architecture-diagram {
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .architecture-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 6px;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .architecture-item::before {
+            content: '→';
+            color: var(--crm-green);
+            font-weight: bold;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-title {
+            color: var(--crm-green);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .metric-card {
+            background: rgba(255,255,255,0.05);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--crm-green);
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .crm-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+        }
+
+        .marketing-badge {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            margin-left: 0.5rem;
+        }
+
+        .campaign-badge {
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            margin-left: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .container { padding: 1rem; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📣 AI in CRM Marketing Cloud</h1>
+            <p class="subtitle">Comprehensive Guide to Machine Learning, Generative AI, and Agentic Systems in Customer Relationship Management, Marketing Automation, and Campaign Optimization</p>
+        </header>
+
+        <div class="nav-container">
+            <button class="nav-btn active" onclick="showSection('ml')">🔮 ML / Predictive</button>
+            <button class="nav-btn" onclick="showSection('gen')">✍️ Generative AI</button>
+            <button class="nav-btn" onclick="showSection('agentic')">🤖 Agentic AI</button>
+        </div>
+
+        <!-- ML / Predictive Use Cases -->
+        <div id="ml" class="content-section active">
+            <h2 class="section-title">🔮 Machine Learning & Predictive Analytics</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem;">
+                Advanced statistical models and algorithms for customer behavior analysis, campaign optimization, and marketing performance management
+            </p>
+
+            <div class="card-grid">
+                <!-- Lead Scoring Models -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">🎯</div>
+                        <div>
+                            <div class="card-title">Lead Scoring</div>
+                            <div class="card-subtitle">Conversion Analysis</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Score leads based on their likelihood to convert using behavioral data, demographic information, and engagement patterns.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Lead Scoring</span>
+                            <span class="tech-tag">Conversion Prediction</span>
+                            <span class="tech-tag">Behavioral Analysis</span>
+                            <span class="tech-tag">Scoring Models</span>
+                            <span class="tech-tag">Lead Qualification</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Lead Data → Behavioral Analysis → Scoring Model → Lead Ranking → Sales Handoff → Conversion</div>
+                            <div class="architecture-item">Interaction Data → Analysis → Scoring → Prioritization → Nurturing → Results</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Lead interaction history</li>
+                                <li>Demographic information</li>
+                                <li>Engagement patterns</li>
+                                <li>Website behavior</li>
+                                <li>Email interactions</li>
+                                <li>Social media activity</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">Scoring Accuracy</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">50-70%</div>
+                                <div class="metric-label">Lead Conversion</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">40-60%</div>
+                                <div class="metric-label">Sales Efficiency</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Conversion Probability Prediction -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">📈</div>
+                        <div>
+                            <div class="card-title">Conversion Probability</div>
+                            <div class="card-subtitle">Sales Forecasting</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Predict the probability of customer conversion across different touchpoints and campaigns to optimize marketing spend and sales efforts.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Conversion Prediction</span>
+                            <span class="tech-tag">Sales Forecasting</span>
+                            <span class="tech-tag">Touchpoint Analysis</span>
+                            <span class="tech-tag">Campaign Optimization</span>
+                            <span class="tech-tag">Revenue Forecasting</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Customer Data → Touchpoint Analysis → Conversion Modeling → Probability Scoring → Optimization → Results</div>
+                            <div class="architecture-item">Interaction Data → Analysis → Prediction → Optimization → Conversion → Revenue</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Customer journey data</li>
+                                <li>Touchpoint interactions</li>
+                                <li>Historical conversion rates</li>
+                                <li>Campaign performance</li>
+                                <li>Customer behavior patterns</li>
+                                <li>Market conditions</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Conversion Prediction</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">Marketing ROI</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">50-70%</div>
+                                <div class="metric-label">Sales Forecasting</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Campaign ROI Forecasting -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">💰</div>
+                        <div>
+                            <div class="card-title">Campaign ROI</div>
+                            <div class="card-subtitle">Revenue Analysis</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Forecast return on investment for marketing campaigns by analyzing historical performance, audience targeting, and channel effectiveness.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">ROI Forecasting</span>
+                            <span class="tech-tag">Campaign Analysis</span>
+                            <span class="tech-tag">Revenue Prediction</span>
+                            <span class="tech-tag">Budget Optimization</span>
+                            <span class="tech-tag">Performance Metrics</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Campaign Data → Performance Analysis → ROI Modeling → Forecasting → Budget Allocation → Optimization</div>
+                            <div class="architecture-item">Historical Data → Analysis → Forecasting → Budgeting → Execution → Results</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Historical campaign performance</li>
+                                <li>Channel effectiveness data</li>
+                                <li>Audience response rates</li>
+                                <li>Cost-per-acquisition metrics</li>
+                                <li>Revenue attribution</li>
+                                <li>Market trends</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">ROI Prediction</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">40-60%</div>
+                                <div class="metric-label">Budget Optimization</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">30-50%</div>
+                                <div class="metric-label">Revenue Growth</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Customer Churn Modeling -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">⚠️</div>
+                        <div>
+                            <div class="card-title">Customer Churn</div>
+                            <div class="card-subtitle">Retention Analysis</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Model customer churn probability to implement targeted retention strategies and reduce customer attrition.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Churn Analysis</span>
+                            <span class="tech-tag">Retention Modeling</span>
+                            <span class="tech-tag">Customer Behavior</span>
+                            <span class="tech-tag">Predictive Analytics</span>
+                            <span class="tech-tag">Retention Strategies</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Customer Data → Behavior Analysis → Churn Prediction → Retention Strategy → Intervention → Results</div>
+                            <div class="architecture-item">Interaction Data → Analysis → Prediction → Retention → Engagement → Success</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Customer interaction history</li>
+                                <li>Engagement patterns</li>
+                                <li>Purchase behavior</li>
+                                <li>Support interactions</li>
+                                <li>Feedback and reviews</li>
+                                <li>Competitor analysis</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">Churn Prediction</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">40-60%</div>
+                                <div class="metric-label">Retention Improvement</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">30-50%</div>
+                                <div class="metric-label">Customer Lifetime Value</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Customer Lifetime Value Prediction -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">💎</div>
+                        <div>
+                            <div class="card-title">Customer Lifetime Value</div>
+                            <div class="card-subtitle">Value Analysis</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Predict the lifetime value of customers to optimize acquisition strategies, retention efforts, and resource allocation.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">CLV Prediction</span>
+                            <span class="tech-tag">Value Analysis</span>
+                            <span class="tech-tag">Customer Segmentation</span>
+                            <span class="tech-tag">Revenue Forecasting</span>
+                            <span class="tech-tag">Resource Allocation</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Customer Data → Value Analysis → CLV Prediction → Segmentation → Strategy → Optimization</div>
+                            <div class="architecture-item">Purchase History → Analysis → Prediction → Segmentation → Targeting → Results</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Purchase history data</li>
+                                <li>Customer behavior patterns</li>
+                                <li>Engagement metrics</li>
+                                <li>Demographic information</li>
+                                <li>Product preferences</li>
+                                <li>Support interactions</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">CLV Prediction</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">50-70%</div>
+                                <div class="metric-label">Resource Optimization</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">40-60%</div>
+                                <div class="metric-label">Revenue Growth</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Segmentation Clustering -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">📊</div>
+                        <div>
+                            <div class="card-title">Segmentation Clustering</div>
+                            <div class="card-subtitle">Customer Analysis</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Cluster customers into meaningful segments based on behavior, preferences, and characteristics for targeted marketing campaigns.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Customer Segmentation</span>
+                            <span class="tech-tag">Clustering Analysis</span>
+                            <span class="tech-tag">Behavioral Analysis</span>
+                            <span class="tech-tag">Targeted Marketing</span>
+                            <span class="tech-tag">Customer Profiling</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Customer Data → Clustering Analysis → Segment Creation → Profile Development → Targeting → Campaign</div>
+                            <div class="architecture-item">Behavior Data → Analysis → Segmentation → Profiling → Targeting → Results</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Customer demographic data</li>
+                                <li>Behavioral patterns</li>
+                                <li>Purchase history</li>
+                                <li>Engagement metrics</li>
+                                <li>Preference data</li>
+                                <li>Interaction history</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Segmentation Accuracy</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">Campaign Effectiveness</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">50-70%</div>
+                                <div class="metric-label">Customer Engagement</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Generative AI Use Cases -->
+        <div id="gen" class="content-section">
+            <h2 class="section-title">✍️ Generative AI Applications</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem;">
+                AI-powered content creation, personalization, and communication for marketing campaigns, customer engagement, and brand messaging
+            </p>
+
+            <div class="card-grid">
+                <!-- Personalized Email Generation -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">📧</div>
+                        <div>
+                            <div class="card-title">Personalized Email</div>
+                            <div class="card-subtitle">Content Generation</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Generate personalized email content tailored to individual customer preferences, behavior, and lifecycle stage to improve engagement and conversion rates.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">Email Personalization</span>
+                            <span class="tech-tag">Content Generation</span>
+                            <span class="tech-tag">Customer Segmentation</span>
+                            <span class="tech-tag">Engagement Optimization</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Customer Data → Preference Analysis → Content Generation → Personalization → Email → Engagement</div>
+                            <div class="architecture-item">Profile Data → Analysis → Generation → Customization → Delivery → Results</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Customer preference data</li>
+                                <li>Behavioral patterns</li>
+                                <li>Purchase history</li>
+                                <li>Engagement metrics</li>
+                                <li>Content performance</li>
+                                <li>Brand guidelines</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">90-95%</div>
+                                <div class="metric-label">Personalization Quality</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">70-90%</div>
+                                <div class="metric-label">Email Engagement</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">50-70%</div>
+                                <div class="metric-label">Conversion Rate</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ad Copy Generation -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">📢</div>
+                        <div>
+                            <div class="card-title">Ad Copy</div>
+                            <div class="card-subtitle">Creative Content</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Generate compelling ad copy for various channels and platforms that resonates with target audiences and drives campaign performance.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">Ad Copy Generation</span>
+                            <span class="tech-tag">Creative Content</span>
+                            <span class="tech-tag">Brand Messaging</span>
+                            <span class="tech-tag">Campaign Optimization</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Campaign Goals → Audience Analysis → Copy Generation → Creative Review → Ad Creation → Performance</div>
+                            <div class="architecture-item">Brand Data → Analysis → Generation → Review → Creation → Optimization</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Campaign objectives</li>
+                                <li>Audience demographics</li>
+                                <li>Brand voice guidelines</li>
+                                <li>Competitor analysis</li>
+                                <li>Channel requirements</li>
+                                <li>Performance metrics</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">90-95%</div>
+                                <div class="metric-label">Copy Quality</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">Ad Performance</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">4-6 hours</div>
+                                <div class="metric-label">Content Generation</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SMS Campaign Drafting -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">📱</div>
+                        <div>
+                            <div class="card-title">SMS Campaign</div>
+                            <div class="card-subtitle">Mobile Messaging</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Generate effective SMS campaign content that complies with character limits, maintains brand voice, and drives mobile engagement.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">SMS Content</span>
+                            <span class="tech-tag">Mobile Marketing</span>
+                            <span class="tech-tag">Message Optimization</span>
+                            <span class="tech-tag">Mobile Engagement</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Campaign Data → Mobile Optimization → Message Generation → SMS Drafting → Review → Delivery</div>
+                            <div class="architecture-item">Content Data → Optimization → Generation → Drafting → Review → Engagement</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Campaign objectives</li>
+                                <li>Mobile audience preferences</li>
+                                <li>Character limitations</li>
+                                <li>Brand guidelines</li>
+                                <li>Compliance requirements</li>
+                                <li>Performance metrics</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">90-95%</div>
+                                <div class="metric-label">Message Quality</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">70-90%</div>
+                                <div class="metric-label">Mobile Engagement</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">3-5 minutes</div>
+                                <div class="metric-label">Message Generation</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Landing Page Content -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">🏠</div>
+                        <div>
+                            <div class="card-title">Landing Page Content</div>
+                            <div class="card-subtitle">Conversion Optimization</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Generate compelling landing page content that converts visitors into leads or customers through persuasive copy and clear calls-to-action.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">Landing Page Content</span>
+                            <span class="tech-tag">Conversion Copy</span>
+                            <span class="tech-tag">CTA Optimization</span>
+                            <span class="tech-tag">Lead Generation</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Campaign Goals → Audience Analysis → Content Generation → Landing Page → CTA → Conversion</div>
+                            <div class="architecture-item">Objective Data → Analysis → Generation → Page → Optimization → Results</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Campaign objectives</li>
+                                <li>Audience personas</li>
+                                <li>Conversion goals</li>
+                                <li>Brand messaging</li>
+                                <li>Competitor analysis</li>
+                                <li>Performance benchmarks</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">90-95%</div>
+                                <div class="metric-label">Content Quality</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">Conversion Rate</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">4-6 hours</div>
+                                <div class="metric-label">Content Generation</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Media Content Creation -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">📱</div>
+                        <div>
+                            <div class="card-title">Social Media Content</div>
+                            <div class="card-subtitle">Platform Engagement</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Generate engaging social media content tailored to different platforms and audience segments to increase brand visibility and engagement.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">Social Media Content</span>
+                            <span class="tech-tag">Platform Optimization</span>
+                            <span class="tech-tag">Audience Engagement</span>
+                            <span class="tech-tag">Brand Awareness</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Brand Data → Platform Analysis → Content Generation → Social Media → Engagement → Growth</div>
+                            <div class="architecture-item">Content Data → Analysis → Generation → Platform → Engagement → Results</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Brand guidelines</li>
+                                <li>Platform specifications</li>
+                                <li>Audience preferences</li>
+                                <li>Content performance</li>
+                                <li>Trending topics</li>
+                                <li>Competitor analysis</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">90-95%</div>
+                                <div class="metric-label">Content Quality</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">70-90%</div>
+                                <div class="metric-label">Social Engagement</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">50-70%</div>
+                                <div class="metric-label">Brand Awareness</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Customer Journey Narrative Summaries -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">🗺️</div>
+                        <div>
+                            <div class="card-title">Customer Journey Narratives</div>
+                            <div class="card-subtitle">Experience Documentation</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Generate comprehensive narratives of customer journeys to understand touchpoints, pain points, and opportunities for improvement.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">Journey Narratives</span>
+                            <span class="tech-tag">Experience Analysis</span>
+                            <span class="tech-tag">Touchpoint Mapping</span>
+                            <span class="tech-tag">Customer Insights</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Journey Data → Touchpoint Analysis → Narrative Generation → Journey Mapping → Insights → Optimization</div>
+                            <div class="architecture-item">Experience Data → Analysis → Narratives → Mapping → Insights → Improvement</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Customer interaction data</li>
+                                <li>Touchpoint information</li>
+                                <li>Journey stages</li>
+                                <li>Pain points</li>
+                                <li>Satisfaction metrics</li>
+                                <li>Improvement opportunities</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">90-95%</div>
+                                <div class="metric-label">Narrative Quality</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">Journey Understanding</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">6-8 hours</div>
+                                <div class="metric-label">Narrative Generation</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Agentic AI Use Cases -->
+        <div id="agentic" class="content-section">
+            <h2 class="section-title">🤖 Agentic AI Systems</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem;">
+                Autonomous AI agents that can reason, plan, and execute complex marketing operations and customer relationship management workflows
+            </p>
+
+            <div class="card-grid">
+                <!-- Campaign Orchestration Agent -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">🎯</div>
+                        <div>
+                            <div class="card-title">Campaign Orchestration</div>
+                            <div class="card-subtitle">Marketing Automation</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Orchestrate multi-channel marketing campaigns by coordinating content delivery, timing, and audience targeting across various platforms.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Campaign Orchestration</span>
+                            <span class="tech-tag">Multi-Channel Marketing</span>
+                            <span class="tech-tag">Content Coordination</span>
+                            <span class="tech-tag">Audience Targeting</span>
+                            <span class="tech-tag">Marketing Automation</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Campaign Goals → Channel Coordination → Content Delivery → Audience Targeting → Performance → Optimization</div>
+                            <div class="architecture-item">Strategy → Coordination → Delivery → Targeting → Results → Optimization</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Campaign objectives</li>
+                                <li>Channel performance</li>
+                                <li>Audience segments</li>
+                                <li>Content calendars</li>
+                                <li>Timing strategies</li>
+                                <li>Performance metrics</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Campaign Coordination</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">70-90%</div>
+                                <div class="metric-label">Multi-Channel Performance</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">Audience Engagement</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Budget Allocation Optimization Agent -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">💰</div>
+                        <div>
+                            <div class="card-title">Budget Allocation</div>
+                            <div class="card-subtitle">Resource Optimization</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Optimize marketing budget allocation across channels, campaigns, and audiences based on performance data and ROI predictions.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Budget Optimization</span>
+                            <span class="tech-tag">Resource Allocation</span>
+                            <span class="tech-tag">ROI Analysis</span>
+                            <span class="tech-tag">Performance Metrics</span>
+                            <span class="tech-tag">Cost Management</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Budget Data → Performance Analysis → Allocation Strategy → Optimization → Distribution → Results</div>
+                            <div class="architecture-item">Financial Data → Analysis → Strategy → Allocation → Optimization → ROI</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Historical performance data</li>
+                                <li>ROI metrics</li>
+                                <li>Channel effectiveness</li>
+                                <li>Budget constraints</li>
+                                <li>Market conditions</li>
+                                <li>Strategic priorities</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Budget Optimization</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">ROI Improvement</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">50-70%</div>
+                                <div class="metric-label">Cost Efficiency</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-time Personalization Agent -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">🎯</div>
+                        <div>
+                            <div class="card-title">Real-time Personalization</div>
+                            <div class="card-subtitle">Dynamic Content</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Deliver personalized content and experiences to customers in real-time based on their behavior, preferences, and context.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Real-time Personalization</span>
+                            <span class="tech-tag">Dynamic Content</span>
+                            <span class="tech-tag">Behavioral Analysis</span>
+                            <span class="tech-tag">Context Awareness</span>
+                            <span class="tech-tag">Customer Experience</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Customer Data → Behavior Analysis → Personalization → Content Delivery → Engagement → Optimization</div>
+                            <div class="architecture-item">Interaction Data → Analysis → Personalization → Delivery → Response → Improvement</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Real-time behavior data</li>
+                                <li>Customer preferences</li>
+                                <li>Context information</li>
+                                <li>Content library</li>
+                                <li>Personalization rules</li>
+                                <li>Performance metrics</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Personalization Accuracy</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">70-90%</div>
+                                <div class="metric-label">Customer Engagement</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">Conversion Rate</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Customer Journey Orchestration Agent -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">🗺️</div>
+                        <div>
+                            <div class="card-title">Customer Journey Orchestration</div>
+                            <div class="card-subtitle">Experience Management</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Orchestrate seamless customer journeys across touchpoints by coordinating interactions, content, and communications.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Journey Orchestration</span>
+                            <span class="tech-tag">Touchpoint Coordination</span>
+                            <span class="tech-tag">Experience Management</span>
+                            <span class="tech-tag">Cross-Channel Integration</span>
+                            <span class="tech-tag">Customer Engagement</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Customer Data → Journey Mapping → Touchpoint Coordination → Content Delivery → Experience → Optimization</div>
+                            <div class="architecture-item">Journey Data → Mapping → Coordination → Delivery → Experience → Improvement</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Customer journey data</li>
+                                <li>Touchpoint information</li>
+                                <li>Interaction history</li>
+                                <li>Content library</li>
+                                <li>Orchestration rules</li>
+                                <li>Performance metrics</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Journey Coordination</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">70-90%</div>
+                                <div class="metric-label">Customer Experience</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">Journey Completion</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lead Nurturing Automation Agent -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">🌱</div>
+                        <div>
+                            <div class="card-title">Lead Nurturing</div>
+                            <div class="card-subtitle">Relationship Building</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Automate lead nurturing workflows by delivering relevant content and interactions based on lead behavior and lifecycle stage.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Lead Nurturing</span>
+                            <span class="tech-tag">Workflow Automation</span>
+                            <span class="tech-tag">Content Delivery</span>
+                            <span class="tech-tag">Lifecycle Management</span>
+                            <span class="tech-tag">Relationship Building</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Lead Data → Lifecycle Analysis → Content Delivery → Nurturing → Engagement → Conversion</div>
+                            <div class="architecture-item">Lead Information → Analysis → Delivery → Nurturing → Engagement → Results</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Lead scoring data</li>
+                                <li>Lifecycle stage information</li>
+                                <li>Content preferences</li>
+                                <li>Engagement patterns</li>
+                                <li>Nurturing workflows</li>
+                                <li>Conversion criteria</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Nurturing Effectiveness</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">Lead Conversion</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">50-70%</div>
+                                <div class="metric-label">Relationship Quality</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cross-channel Coordination Agent -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">🔄</div>
+                        <div>
+                            <div class="card-title">Cross-channel Coordination</div>
+                            <div class="card-subtitle">Channel Integration</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Coordinate marketing efforts across multiple channels to ensure consistent messaging, optimal timing, and seamless customer experience.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Cross-channel Coordination</span>
+                            <span class="tech-tag">Channel Integration</span>
+                            <span class="tech-tag">Message Consistency</span>
+                            <span class="tech-tag">Timing Optimization</span>
+                            <span class="tech-tag">Customer Experience</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Channel Data → Coordination → Message Consistency → Timing → Integration → Results</div>
+                            <div class="architecture-item">Channel Information → Coordination → Consistency → Timing → Integration → Success</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Channel performance data</li>
+                                <li>Message templates</li>
+                                <li>Timing strategies</li>
+                                <li>Audience segments</li>
+                                <li>Integration protocols</li>
+                                <li>Performance metrics</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Channel Coordination</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">70-90%</div>
+                                <div class="metric-label">Message Consistency</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">Customer Experience</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>✨ Built with cutting-edge AI technologies for the future of CRM marketing and customer relationship management</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary);">
+                Note: Implementation requires careful consideration of customer privacy, data security, and marketing ethics
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update navigation buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Find and activate the clicked button
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
