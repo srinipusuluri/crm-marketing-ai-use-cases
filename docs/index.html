@@ -3,17 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Industry Use Cases - Comprehensive Repository</title>
+    <title>AI in CRM Marketing Cloud - Comprehensive Use Cases</title>
     <style>
         :root {
-            --primary-color: #2563eb;
-            --secondary-color: #10b981;
+            --primary-color: #10b981;
+            --secondary-color: #3b82f6;
             --accent-color: #f59e0b;
             --bg-color: #0f172a;
             --card-bg: #1e293b;
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
             --border-color: #334155;
+            --crm-green: #10b981;
+            --marketing-blue: #3b82f6;
+            --campaign-orange: #f59e0b;
+            --engagement-purple: #8b5cf6;
         }
 
         * {
@@ -45,7 +49,7 @@
         h1 {
             font-size: 3rem;
             margin-bottom: 1rem;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+            background: linear-gradient(45deg, var(--crm-green), var(--marketing-blue), var(--campaign-orange));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -63,81 +67,59 @@
             margin-bottom: 2rem;
         }
 
-        .intro-section {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 2rem;
-            margin-bottom: 3rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        .intro-section h2 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 2rem;
-        }
-
-        .intro-section p {
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        .importance-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .importance-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-        }
-
-        .importance-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-            border-color: rgba(255,255,255,0.1);
-        }
-
-        .importance-card h3 {
-            color: var(--secondary-color);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .importance-card ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .importance-card li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid var(--border-color);
+        .nav-container {
             display: flex;
-            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
         }
 
-        .importance-card li::before {
-            content: '✓';
-            color: var(--secondary-color);
-            font-weight: bold;
-            margin-right: 1rem;
+        .nav-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .industry-grid {
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border-color: var(--primary-color);
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(45deg, var(--crm-green), var(--marketing-blue));
+            border: none;
+        }
+
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
             margin-bottom: 3rem;
         }
 
-        .industry-card {
+        .card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 16px;
@@ -147,98 +129,151 @@
             overflow: hidden;
         }
 
-        .industry-card:hover {
+        .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 35px rgba(0,0,0,0.3);
             border-color: rgba(255,255,255,0.1);
         }
 
-        .industry-card::before {
+        .card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+            background: linear-gradient(90deg, var(--crm-green), var(--marketing-blue), var(--campaign-orange));
         }
 
-        .industry-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
+        .card-header {
             display: flex;
             align-items: center;
             gap: 1rem;
+            margin-bottom: 1.5rem;
         }
 
-        .industry-icon {
-            font-size: 2rem;
+        .icon {
             width: 50px;
             height: 50px;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(255,255,255,0.1);
+            font-size: 1.5rem;
+            font-weight: bold;
         }
 
-        .industry-description {
+        .icon.ml { background: rgba(16, 185, 129, 0.2); color: var(--crm-green); }
+        .icon.gen { background: rgba(59, 130, 246, 0.2); color: var(--marketing-blue); }
+        .icon.ag { background: rgba(139, 92, 246, 0.2); color: var(--engagement-purple); }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-subtitle {
             color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            font-style: italic;
-        }
-
-        .industry-link {
-            display: inline-block;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 1px;
+            margin-bottom: 1.5rem;
         }
 
-        .industry-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            text-decoration: none;
-            color: white;
+        .card-content {
+            margin-bottom: 2rem;
         }
 
-        .tech-overview {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 2rem;
-            margin-bottom: 3rem;
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(45deg, var(--crm-green), var(--marketing-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .tech-overview h2 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 2rem;
-        }
-
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin-top: 2rem;
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .tech-tag {
             background: rgba(255,255,255,0.1);
             color: var(--text-secondary);
-            padding: 0.5rem 1rem;
+            padding: 0.25rem 0.75rem;
             border-radius: 20px;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             border: 1px solid var(--border-color);
-            display: inline-block;
-            margin: 0.25rem;
+        }
+
+        .architecture-diagram {
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .architecture-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 6px;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .architecture-item::before {
+            content: '→';
+            color: var(--crm-green);
+            font-weight: bold;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-title {
+            color: var(--crm-green);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .metric-card {
+            background: rgba(255,255,255,0.05);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--crm-green);
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
         }
 
         footer {
@@ -249,452 +284,1097 @@
             color: var(--text-secondary);
         }
 
-        .github-link {
-            display: inline-block;
-            background: #333;
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            margin-top: 1rem;
-            transition: all 0.3s ease;
+        .crm-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
         }
 
-        .github-link:hover {
-            background: #fff;
-            color: #000;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            text-decoration: none;
-            color: #000;
+        .marketing-badge {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            margin-left: 0.5rem;
+        }
+
+        .campaign-badge {
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            margin-left: 0.5rem;
         }
 
         @media (max-width: 768px) {
             h1 { font-size: 2rem; }
             .container { padding: 1rem; }
-            .industry-grid { grid-template-columns: 1fr; }
+            .card-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>🤖 AI Industry Use Cases</h1>
-            <p class="subtitle">Comprehensive Repository of Machine Learning, Generative AI, and Agentic Systems Across 26 Industries</p>
+            <h1>📣 AI in CRM Marketing Cloud</h1>
+            <p class="subtitle">Comprehensive Guide to Machine Learning, Generative AI, and Agentic Systems in Customer Relationship Management, Marketing Automation, and Campaign Optimization</p>
         </header>
 
-        <section class="intro-section">
-            <h2>📋 Repository Overview</h2>
-            <p><strong>AI Industry Use Cases</strong> is a comprehensive collection of AI applications across 26 major industries, showcasing how cutting-edge technologies are transforming business operations, customer experiences, and industry standards.</p>
-            
-            <p>This repository serves as a practical guide for AI practitioners, business leaders, and technology enthusiasts to understand the real-world applications of AI technologies across diverse sectors.</p>
-            
-            <p>Each industry page contains detailed use cases covering three key AI technology categories:</p>
-            
-            <div class="tech-grid">
-                <span class="tech-tag">🔮 Machine Learning & Predictive Analytics</span>
-                <span class="tech-tag">✍️ Generative AI Applications</span>
-                <span class="tech-tag">🤖 Agentic AI Systems</span>
-            </div>
-        </section>
+        <div class="nav-container">
+            <button class="nav-btn active" onclick="showSection('ml')">🔮 ML / Predictive</button>
+            <button class="nav-btn" onclick="showSection('gen')">✍️ Generative AI</button>
+            <button class="nav-btn" onclick="showSection('agentic')">🤖 Agentic AI</button>
+        </div>
 
-        <section class="tech-overview">
-            <h2>🔬 AI Technology Categories</h2>
-            <p>Each industry page demonstrates practical applications across three cutting-edge AI technology categories:</p>
-            
-            <div class="tech-grid">
-                <div class="tech-tag">🔮 ML / Predictive Analytics</div>
-                <div class="tech-tag">Advanced statistical models and algorithms for forecasting, classification, and optimization</div>
-                <div class="tech-tag">✍️ Generative AI Applications</div>
-                <div class="tech-tag">AI-powered content creation, communication, and analysis for business operations</div>
-                <div class="tech-tag">🤖 Agentic AI Systems</div>
-                <div class="tech-tag">Autonomous AI agents that can reason, plan, and execute complex workflows</div>
-            </div>
-        </section>
+        <!-- ML / Predictive Use Cases -->
+        <div id="ml" class="content-section active">
+            <h2 class="section-title">🔮 Machine Learning & Predictive Analytics</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem;">
+                Advanced statistical models and algorithms for customer behavior analysis, campaign optimization, and marketing performance management
+            </p>
 
-        <section class="importance-grid">
-            <div class="importance-card">
-                <h3>🌍 Why Industry-Specific AI Matters</h3>
-                <ul>
-                    <li>Each industry has unique challenges, regulations, and data characteristics</li>
-                    <li>Industry-specific solutions address domain knowledge and compliance requirements</li>
-                    <li>Specialized AI models achieve better performance on industry-specific tasks</li>
-                    <li>Domain expertise ensures practical, implementable solutions</li>
-                    <li>Industry context drives innovation and competitive advantage</li>
-                </ul>
-            </div>
-
-            <div class="importance-card">
-                <h3>🚀 Strategic Value</h3>
-                <ul>
-                    <li>Accelerates AI adoption across traditional industries</li>
-                    <li>Provides blueprints for digital transformation initiatives</li>
-                    <li>Enables cross-industry learning and innovation transfer</li>
-                    <li>Supports workforce upskilling and AI literacy</li>
-                    <li>Facilitates informed investment and technology decisions</li>
-                </ul>
-            </div>
-
-            <div class="importance-card">
-                <h3>💡 Innovation Impact</h3>
-                <ul>
-                    <li>Drives efficiency and cost reduction across sectors</li>
-                    <li>Enhances customer experience and personalization</li>
-                    <li>Enables new business models and revenue streams</li>
-                    <li>Improves decision-making with data-driven insights</li>
-                    <li>Addresses complex societal challenges through technology</li>
-                </ul>
-            </div>
-        </section>
-
-        <section>
-            <h2 style="text-align: center; margin-bottom: 2rem; color: var(--primary-color); font-size: 2.5rem;">🏢 Industry Categories</h2>
-            
-            <div class="industry-grid">
-                <!-- Finance Industry -->
-                <div class="industry-card">
-                    <div class="industry-title">
-                        <div class="industry-icon">💰</div>
-                        <a href="finance-ai-use-cases.html" style="color: inherit; text-decoration: none;">Finance Industry</a>
+            <div class="card-grid">
+                <!-- Lead Scoring Models -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">🎯</div>
+                        <div>
+                            <div class="card-title">Lead Scoring</div>
+                            <div class="card-subtitle">Conversion Analysis</div>
+                        </div>
                     </div>
-                    <div class="industry-description">
-                        Risk management, trading, compliance, and customer service applications
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Score leads based on their likelihood to convert using behavioral data, demographic information, and engagement patterns.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Lead Scoring</span>
+                            <span class="tech-tag">Conversion Prediction</span>
+                            <span class="tech-tag">Behavioral Analysis</span>
+                            <span class="tech-tag">Scoring Models</span>
+                            <span class="tech-tag">Lead Qualification</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Lead Data → Behavioral Analysis → Scoring Model → Lead Ranking → Sales Handoff → Conversion</div>
+                            <div class="architecture-item">Interaction Data → Analysis → Scoring → Prioritization → Nurturing → Results</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Lead interaction history</li>
+                                <li>Demographic information</li>
+                                <li>Engagement patterns</li>
+                                <li>Website behavior</li>
+                                <li>Email interactions</li>
+                                <li>Social media activity</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">Scoring Accuracy</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">50-70%</div>
+                                <div class="metric-label">Lead Conversion</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">40-60%</div>
+                                <div class="metric-label">Sales Efficiency</div>
+                            </div>
+                        </div>
                     </div>
-                    <a href="finance-ai-use-cases.html" class="industry-link">Explore Finance AI</a>
                 </div>
 
-                <!-- Healthcare Industry -->
-                <div class="industry-card">
-                    <div class="industry-title">
-                        <div class="industry-icon">🏥</div>
-                        <a href="../healthcare-ai-use-cases/index.html" style="color: inherit; text-decoration: none;">Healthcare Industry</a>
+                <!-- Conversion Probability Prediction -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">📈</div>
+                        <div>
+                            <div class="card-title">Conversion Probability</div>
+                            <div class="card-subtitle">Sales Forecasting</div>
+                        </div>
                     </div>
-                    <div class="industry-description">
-                        Clinical decision support, patient care, and medical research applications
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Predict the probability of customer conversion across different touchpoints and campaigns to optimize marketing spend and sales efforts.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Conversion Prediction</span>
+                            <span class="tech-tag">Sales Forecasting</span>
+                            <span class="tech-tag">Touchpoint Analysis</span>
+                            <span class="tech-tag">Campaign Optimization</span>
+                            <span class="tech-tag">Revenue Forecasting</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Customer Data → Touchpoint Analysis → Conversion Modeling → Probability Scoring → Optimization → Results</div>
+                            <div class="architecture-item">Interaction Data → Analysis → Prediction → Optimization → Conversion → Revenue</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Customer journey data</li>
+                                <li>Touchpoint interactions</li>
+                                <li>Historical conversion rates</li>
+                                <li>Campaign performance</li>
+                                <li>Customer behavior patterns</li>
+                                <li>Market conditions</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Conversion Prediction</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">Marketing ROI</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">50-70%</div>
+                                <div class="metric-label">Sales Forecasting</div>
+                            </div>
+                        </div>
                     </div>
-                    <a href="../healthcare-ai-use-cases/index.html" class="industry-link">Explore Healthcare AI</a>
                 </div>
 
-                <!-- Transportation & Logistics -->
-                <div class="industry-card">
-                    <div class="industry-title">
-                        <div class="industry-icon">🚚</div>
-                        <a href="../transportation-ai-use-cases/index.html" style="color: inherit; text-decoration: none;">Transportation & Logistics</a>
+                <!-- Campaign ROI Forecasting -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">💰</div>
+                        <div>
+                            <div class="card-title">Campaign ROI</div>
+                            <div class="card-subtitle">Revenue Analysis</div>
+                        </div>
                     </div>
-                    <div class="industry-description">
-                        Supply chain optimization, fleet management, and delivery operations
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Forecast return on investment for marketing campaigns by analyzing historical performance, audience targeting, and channel effectiveness.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">ROI Forecasting</span>
+                            <span class="tech-tag">Campaign Analysis</span>
+                            <span class="tech-tag">Revenue Prediction</span>
+                            <span class="tech-tag">Budget Optimization</span>
+                            <span class="tech-tag">Performance Metrics</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Campaign Data → Performance Analysis → ROI Modeling → Forecasting → Budget Allocation → Optimization</div>
+                            <div class="architecture-item">Historical Data → Analysis → Forecasting → Budgeting → Execution → Results</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Historical campaign performance</li>
+                                <li>Channel effectiveness data</li>
+                                <li>Audience response rates</li>
+                                <li>Cost-per-acquisition metrics</li>
+                                <li>Revenue attribution</li>
+                                <li>Market trends</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">ROI Prediction</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">40-60%</div>
+                                <div class="metric-label">Budget Optimization</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">30-50%</div>
+                                <div class="metric-label">Revenue Growth</div>
+                            </div>
+                        </div>
                     </div>
-                    <a href="../transportation-ai-use-cases/index.html" class="industry-link">Explore Transportation AI</a>
                 </div>
 
-                <!-- Automotive Industry -->
-                <div class="industry-card">
-                    <div class="industry-title">
-                        <div class="industry-icon">🚗</div>
-                        <a href="../automotive-ai-use-cases/index.html" style="color: inherit; text-decoration: none;">Automotive Industry</a>
+                <!-- Customer Churn Modeling -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">⚠️</div>
+                        <div>
+                            <div class="card-title">Customer Churn</div>
+                            <div class="card-subtitle">Retention Analysis</div>
+                        </div>
                     </div>
-                    <div class="industry-description">
-                        Vehicle performance, safety systems, manufacturing, and mobility services
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Model customer churn probability to implement targeted retention strategies and reduce customer attrition.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Churn Analysis</span>
+                            <span class="tech-tag">Retention Modeling</span>
+                            <span class="tech-tag">Customer Behavior</span>
+                            <span class="tech-tag">Predictive Analytics</span>
+                            <span class="tech-tag">Retention Strategies</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Customer Data → Behavior Analysis → Churn Prediction → Retention Strategy → Intervention → Results</div>
+                            <div class="architecture-item">Interaction Data → Analysis → Prediction → Retention → Engagement → Success</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Customer interaction history</li>
+                                <li>Engagement patterns</li>
+                                <li>Purchase behavior</li>
+                                <li>Support interactions</li>
+                                <li>Feedback and reviews</li>
+                                <li>Competitor analysis</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">Churn Prediction</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">40-60%</div>
+                                <div class="metric-label">Retention Improvement</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">30-50%</div>
+                                <div class="metric-label">Customer Lifetime Value</div>
+                            </div>
+                        </div>
                     </div>
-                    <a href="../automotive-ai-use-cases/index.html" class="industry-link">Explore Automotive AI</a>
                 </div>
 
-                <!-- Pharmaceuticals & Life Sciences -->
-                <div class="industry-card">
-                    <div class="industry-title">
-                        <div class="industry-icon">💊</div>
-                        <a href="../pharma-ai-use-cases/index.html" style="color: inherit; text-decoration: none;">Pharmaceuticals & Life Sciences</a>
+                <!-- Customer Lifetime Value Prediction -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">💎</div>
+                        <div>
+                            <div class="card-title">Customer Lifetime Value</div>
+                            <div class="card-subtitle">Value Analysis</div>
+                        </div>
                     </div>
-                    <div class="industry-description">
-                        Drug discovery, clinical trials, regulatory compliance, and precision medicine
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Predict the lifetime value of customers to optimize acquisition strategies, retention efforts, and resource allocation.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">CLV Prediction</span>
+                            <span class="tech-tag">Value Analysis</span>
+                            <span class="tech-tag">Customer Segmentation</span>
+                            <span class="tech-tag">Revenue Forecasting</span>
+                            <span class="tech-tag">Resource Allocation</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Customer Data → Value Analysis → CLV Prediction → Segmentation → Strategy → Optimization</div>
+                            <div class="architecture-item">Purchase History → Analysis → Prediction → Segmentation → Targeting → Results</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Purchase history data</li>
+                                <li>Customer behavior patterns</li>
+                                <li>Engagement metrics</li>
+                                <li>Demographic information</li>
+                                <li>Product preferences</li>
+                                <li>Support interactions</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">CLV Prediction</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">50-70%</div>
+                                <div class="metric-label">Resource Optimization</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">40-60%</div>
+                                <div class="metric-label">Revenue Growth</div>
+                            </div>
+                        </div>
                     </div>
-                    <a href="../pharma-ai-use-cases/index.html" class="industry-link">Explore Pharma AI</a>
                 </div>
 
-                <!-- Media & Entertainment -->
-                <div class="industry-card">
-                    <div class="industry-title">
-                        <div class="industry-icon">🎬</div>
-                        <a href="../media-ai-use-cases/index.html" style="color: inherit; text-decoration: none;">Media & Entertainment</a>
+                <!-- Segmentation Clustering -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">📊</div>
+                        <div>
+                            <div class="card-title">Segmentation Clustering</div>
+                            <div class="card-subtitle">Customer Analysis</div>
+                        </div>
                     </div>
-                    <div class="industry-description">
-                        Content creation, audience engagement, streaming optimization, and creative production
-                    </div>
-                    <a href="../media-ai-use-cases/index.html" class="industry-link">Explore Media AI</a>
-                </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Cluster customers into meaningful segments based on behavior, preferences, and characteristics for targeted marketing campaigns.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Customer Segmentation</span>
+                            <span class="tech-tag">Clustering Analysis</span>
+                            <span class="tech-tag">Behavioral Analysis</span>
+                            <span class="tech-tag">Targeted Marketing</span>
+                            <span class="tech-tag">Customer Profiling</span>
+                        </div>
 
-                <!-- Education (EdTech) -->
-                <div class="industry-card">
-                    <div class="industry-title">
-                        <div class="industry-icon">🎓</div>
-                        <a href="../education-ai-use-cases/index.html" style="color: inherit; text-decoration: none;">Education (EdTech)</a>
-                    </div>
-                    <div class="industry-description">
-                        Personalized learning, academic support, educational planning, and student success
-                    </div>
-                    <a href="../education-ai-use-cases/index.html" class="industry-link">Explore Education AI</a>
-                </div>
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Customer Data → Clustering Analysis → Segment Creation → Profile Development → Targeting → Campaign</div>
+                            <div class="architecture-item">Behavior Data → Analysis → Segmentation → Profiling → Targeting → Results</div>
+                        </div>
 
-                <!-- Travel & Hospitality -->
-                <div class="industry-card">
-                    <div class="industry-title">
-                        <div class="industry-icon">✈️</div>
-                        <a href="../travel-ai-use-cases/index.html" style="color: inherit; text-decoration: none;">Travel & Hospitality</a>
-                    </div>
-                    <div class="industry-description">
-                        Customer experience, revenue management, booking optimization, and global service delivery
-                    </div>
-                    <a href="../travel-ai-use-cases/index.html" class="industry-link">Explore Travel AI</a>
-                </div>
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Customer demographic data</li>
+                                <li>Behavioral patterns</li>
+                                <li>Purchase history</li>
+                                <li>Engagement metrics</li>
+                                <li>Preference data</li>
+                                <li>Interaction history</li>
+                            </ul>
+                        </div>
 
-                <!-- Agriculture (AgTech) -->
-                <div class="industry-card">
-                    <div class="industry-title">
-                        <div class="industry-icon">🌾</div>
-                        <a href="./agriculture-ai-use-cases/index.html" style="color: inherit; text-decoration: none;">Agriculture (AgTech)</a>
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Segmentation Accuracy</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">Campaign Effectiveness</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">50-70%</div>
+                                <div class="metric-label">Customer Engagement</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="industry-description">
-                        Crop optimization, livestock management, precision farming, and sustainable agriculture
-                    </div>
-                    <a href="./agriculture-ai-use-cases/index.html" class="industry-link">Explore Agriculture AI</a>
-                </div>
-
-                <!-- Government & Public Sector -->
-                <div class="industry-card">
-                    <div class="industry-title">
-                        <div class="industry-icon">🏛️</div>
-                        <a href="../government-ai-use-cases/index.html" style="color: inherit; text-decoration: none;">Government & Public Sector</a>
-                    </div>
-                    <div class="industry-description">
-                        Public administration, citizen services, policy management, and civic engagement
-                    </div>
-                    <a href="../government-ai-use-cases/index.html" class="industry-link">Explore Government AI</a>
-                </div>
-
-                <!-- Defense & Aerospace -->
-                <div class="industry-card">
-                    <div class="industry-title">
-                        <div class="industry-icon">🚀</div>
-                        <a href="../defense-ai-use-cases/index.html" style="color: inherit; text-decoration: none;">Defense & Aerospace</a>
-                    </div>
-                    <div class="industry-description">
-                        Military operations, aerospace systems, security intelligence, and strategic command
-                    </div>
-                    <a href="../defense-ai-use-cases/index.html" class="industry-link">Explore Defense AI</a>
-                </div>
-
-                <!-- Cybersecurity -->
-                <div class="industry-card">
-                    <div class="industry-title">
-                        <div class="industry-icon">🔒</div>
-                        <a href="../cybersecurity-ai-use-cases/index.html" style="color: inherit; text-decoration: none;">Cybersecurity</a>
-                    </div>
-                    <div class="industry-description">
-                        Threat detection, security operations, incident response, and protective systems
-                    </div>
-                    <a href="../cybersecurity-ai-use-cases/index.html" class="industry-link">Explore Cybersecurity AI</a>
-                </div>
-
-                <!-- Legal Services (LegalTech) -->
-                <div class="industry-card">
-                    <div class="industry-title">
-                        <div class="industry-icon">⚖️</div>
-                        <a href="../legaltech-ai-use-cases/index.html" style="color: inherit; text-decoration: none;">Legal Services (LegalTech)</a>
-                    </div>
-                    <div class="industry-description">
-                        Case management, legal research, contract analysis, and client service
-                    </div>
-                    <a href="../legaltech-ai-use-cases/index.html" class="industry-link">Explore Legal AI</a>
-                </div>
-
-                <!-- Human Resources (HRTech) -->
-                <div class="industry-card">
-                    <div class="industry-title">
-                        <div class="industry-icon">👥</div>
-                        <a href="../hrtech-ai-use-cases/index.html" style="color: inherit; text-decoration: none;">Human Resources (HRTech)</a>
-                    </div>
-                    <div class="industry-description">
-                        Talent management, workforce optimization, employee experience, and organizational development
-                    </div>
-                    <a href="../hrtech-ai-use-cases/index.html" class="industry-link">Explore HR AI</a>
-                </div>
-
-                <!-- Supply Chain & Procurement -->
-                <div class="industry-card">
-                    <div class="industry-title">
-                        <div class="industry-icon">📦</div>
-                        <a href="../supplychain-ai-use-cases/index.html" style="color: inherit; text-decoration: none;">Supply Chain & Procurement</a>
-                    </div>
-                    <div class="industry-description">
-                        Inventory optimization, supplier management, logistics coordination, and strategic sourcing
-                    </div>
-                    <a href="../supplychain-ai-use-cases/index.html" class="industry-link">Explore Supply Chain AI</a>
-                </div>
-
-                <!-- Marketing & Advertising -->
-                <div class="industry-card">
-                    <div class="industry-title">
-                        <div class="industry-icon">📢</div>
-                        <a href="../marketing-ai-use-cases/index.html" style="color: inherit; text-decoration: none;">Marketing & Advertising</a>
-                    </div>
-                    <div class="industry-description">
-                        Customer engagement, campaign management, content creation, and brand optimization
-                    </div>
-                    <a href="../marketing-ai-use-cases/index.html" class="industry-link">Explore Marketing AI</a>
-                </div>
-
-                <!-- Construction Industry -->
-                <div class="industry-card">
-                    <div class="industry-title">
-                        <div class="industry-icon">🏗️</div>
-                        <a href="../construction-ai-use-cases/index.html" style="color: inherit; text-decoration: none;">Construction Industry</a>
-                    </div>
-                    <div class="industry-description">
-                        Project management, safety compliance, equipment maintenance, and structural integrity
-                    </div>
-                    <a href="../construction-ai-use-cases/index.html" class="industry-link">Explore Construction AI</a>
-                </div>
-
-                <!-- Mining Industry -->
-                <div class="industry-card">
-                    <div class="industry-title">
-                        <div class="industry-icon">⛏️</div>
-                        <a href="../mining-ai-use-cases/index.html" style="color: inherit; text-decoration: none;">Mining Industry</a>
-                    </div>
-                    <div class="industry-description">
-                        Mineral extraction, resource management, operational safety, and environmental compliance
-                    </div>
-                    <a href="../mining-ai-use-cases/index.html" class="industry-link">Explore Mining AI</a>
-                </div>
-
-                <!-- Gaming Industry -->
-                <div class="industry-card">
-                    <div class="industry-title">
-                        <div class="industry-icon">🎮</div>
-                        <a href="../gaming-ai-use-cases/index.html" style="color: inherit; text-decoration: none;">Gaming Industry</a>
-                    </div>
-                    <div class="industry-description">
-                        Player experience, game development, live operations, and content creation
-                    </div>
-                    <a href="../gaming-ai-use-cases/index.html" class="industry-link">Explore Gaming AI</a>
-                </div>
-
-                <!-- Sports & Sports Analytics -->
-                <div class="industry-card">
-                    <div class="industry-title">
-                        <div class="industry-icon">⚽</div>
-                        <a href="../sports-ai-use-cases/index.html" style="color: inherit; text-decoration: none;">Sports & Sports Analytics</a>
-                    </div>
-                    <div class="industry-description">
-                        Athletic performance, team management, fan engagement, and competitive strategy
-                    </div>
-                    <a href="../sports-ai-use-cases/index.html" class="industry-link">Explore Sports AI</a>
-                </div>
-
-                <!-- Call Center & Customer Service -->
-                <div class="industry-card">
-                    <div class="industry-title">
-                        <div class="industry-icon">📞</div>
-                        <a href="../callcenter-ai-use-cases/index.html" style="color: inherit; text-decoration: none;">Call Center & Customer Service</a>
-                    </div>
-                    <div class="industry-description">
-                        Contact center operations, customer experience, and service optimization
-                    </div>
-                    <a href="../callcenter-ai-use-cases/index.html" class="industry-link">Explore Call Center AI</a>
-                </div>
-
-                <!-- CRM Marketing Cloud -->
-                <div class="industry-card">
-                    <div class="industry-title">
-                        <div class="industry-icon">📧</div>
-                        <a href="../crm-marketing-ai-use-cases/index.html" style="color: inherit; text-decoration: none;">CRM Marketing Cloud</a>
-                    </div>
-                    <div class="industry-description">
-                        Customer relationship management, marketing automation, and campaign optimization
-                    </div>
-                    <a href="../crm-marketing-ai-use-cases/index.html" class="industry-link">Explore CRM Marketing AI</a>
-                </div>
-
-                <!-- CRM Sales Cloud -->
-                <div class="industry-card">
-                    <div class="industry-title">
-                        <div class="industry-icon">💼</div>
-                        <a href="../crm-sales-ai-use-cases/index.html" style="color: inherit; text-decoration: none;">CRM Sales Cloud</a>
-                    </div>
-                    <div class="industry-description">
-                        Customer relationship management, sales automation, and revenue optimization
-                    </div>
-                    <a href="../crm-sales-ai-use-cases/index.html" class="industry-link">Explore CRM Sales AI</a>
-                </div>
-
-                <!-- CRM Revenue Cloud -->
-                <div class="industry-card">
-                    <div class="industry-title">
-                        <div class="industry-icon">💰</div>
-                        <a href="../crm-revenue-ai-use-cases/index.html" style="color: inherit; text-decoration: none;">CRM Revenue Cloud</a>
-                    </div>
-                    <div class="industry-description">
-                        Customer relationship management, CPQ automation, billing, and pricing optimization
-                    </div>
-                    <a href="../crm-revenue-ai-use-cases/index.html" class="industry-link">Explore CRM Revenue AI</a>
-                </div>
-
-                <!-- CRM Service Cloud -->
-                <div class="industry-card">
-                    <div class="industry-title">
-                        <div class="industry-icon">🛠️</div>
-                        <a href="../crm-service-ai-use-cases/index.html" style="color: inherit; text-decoration: none;">CRM Service Cloud</a>
-                    </div>
-                    <div class="industry-description">
-                        Customer relationship management, service automation, case management, and support operations
-                    </div>
-                    <a href="../crm-service-ai-use-cases/index.html" class="industry-link">Explore CRM Service AI</a>
-                </div>
-
-                <!-- CRM Communities -->
-                <div class="industry-card">
-                    <div class="industry-title">
-                        <div class="industry-icon">🌐</div>
-                        <a href="../crm-communities-ai-use-cases/index.html" style="color: inherit; text-decoration: none;">CRM Communities</a>
-                    </div>
-                    <div class="industry-description">
-                        Customer/partner portals, community engagement, knowledge sharing, and portal management
-                    </div>
-                    <a href="../crm-communities-ai-use-cases/index.html" class="industry-link">Explore CRM Communities AI</a>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section class="tech-overview">
-            <h2>📊 Repository Statistics</h2>
-            <p><strong>26 Industry Categories</strong> | <strong>78+ AI Technology Categories</strong> | <strong>200+ Detailed Use Cases</strong></p>
-            
-            <div class="tech-grid">
-                <span class="tech-tag">🔮 Machine Learning & Predictive Analytics</span>
-                <span class="tech-tag">✍️ Generative AI Applications</span>
-                <span class="tech-tag">🤖 Agentic AI Systems</span>
-                <span class="tech-tag">GPT-4/Claude</span>
-                <span class="tech-tag">TensorFlow/PyTorch</span>
-                <span class="tech-tag">Computer Vision</span>
-                <span class="tech-tag">Natural Language Processing</span>
-                <span class="tech-tag">Reinforcement Learning</span>
-                <span class="tech-tag">Deep Learning</span>
-                <span class="tech-tag">Data Analytics</span>
-                <span class="tech-tag">Business Intelligence</span>
-                <span class="tech-tag">Automation</span>
+        <!-- Generative AI Use Cases -->
+        <div id="gen" class="content-section">
+            <h2 class="section-title">✍️ Generative AI Applications</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem;">
+                AI-powered content creation, personalization, and communication for marketing campaigns, customer engagement, and brand messaging
+            </p>
+
+            <div class="card-grid">
+                <!-- Personalized Email Generation -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">📧</div>
+                        <div>
+                            <div class="card-title">Personalized Email</div>
+                            <div class="card-subtitle">Content Generation</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Generate personalized email content tailored to individual customer preferences, behavior, and lifecycle stage to improve engagement and conversion rates.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">Email Personalization</span>
+                            <span class="tech-tag">Content Generation</span>
+                            <span class="tech-tag">Customer Segmentation</span>
+                            <span class="tech-tag">Engagement Optimization</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Customer Data → Preference Analysis → Content Generation → Personalization → Email → Engagement</div>
+                            <div class="architecture-item">Profile Data → Analysis → Generation → Customization → Delivery → Results</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Customer preference data</li>
+                                <li>Behavioral patterns</li>
+                                <li>Purchase history</li>
+                                <li>Engagement metrics</li>
+                                <li>Content performance</li>
+                                <li>Brand guidelines</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">90-95%</div>
+                                <div class="metric-label">Personalization Quality</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">70-90%</div>
+                                <div class="metric-label">Email Engagement</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">50-70%</div>
+                                <div class="metric-label">Conversion Rate</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ad Copy Generation -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">📢</div>
+                        <div>
+                            <div class="card-title">Ad Copy</div>
+                            <div class="card-subtitle">Creative Content</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Generate compelling ad copy for various channels and platforms that resonates with target audiences and drives campaign performance.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">Ad Copy Generation</span>
+                            <span class="tech-tag">Creative Content</span>
+                            <span class="tech-tag">Brand Messaging</span>
+                            <span class="tech-tag">Campaign Optimization</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Campaign Goals → Audience Analysis → Copy Generation → Creative Review → Ad Creation → Performance</div>
+                            <div class="architecture-item">Brand Data → Analysis → Generation → Review → Creation → Optimization</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Campaign objectives</li>
+                                <li>Audience demographics</li>
+                                <li>Brand voice guidelines</li>
+                                <li>Competitor analysis</li>
+                                <li>Channel requirements</li>
+                                <li>Performance metrics</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">90-95%</div>
+                                <div class="metric-label">Copy Quality</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">Ad Performance</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">4-6 hours</div>
+                                <div class="metric-label">Content Generation</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SMS Campaign Drafting -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">📱</div>
+                        <div>
+                            <div class="card-title">SMS Campaign</div>
+                            <div class="card-subtitle">Mobile Messaging</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Generate effective SMS campaign content that complies with character limits, maintains brand voice, and drives mobile engagement.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">SMS Content</span>
+                            <span class="tech-tag">Mobile Marketing</span>
+                            <span class="tech-tag">Message Optimization</span>
+                            <span class="tech-tag">Mobile Engagement</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Campaign Data → Mobile Optimization → Message Generation → SMS Drafting → Review → Delivery</div>
+                            <div class="architecture-item">Content Data → Optimization → Generation → Drafting → Review → Engagement</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Campaign objectives</li>
+                                <li>Mobile audience preferences</li>
+                                <li>Character limitations</li>
+                                <li>Brand guidelines</li>
+                                <li>Compliance requirements</li>
+                                <li>Performance metrics</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">90-95%</div>
+                                <div class="metric-label">Message Quality</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">70-90%</div>
+                                <div class="metric-label">Mobile Engagement</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">3-5 minutes</div>
+                                <div class="metric-label">Message Generation</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Landing Page Content -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">🏠</div>
+                        <div>
+                            <div class="card-title">Landing Page Content</div>
+                            <div class="card-subtitle">Conversion Optimization</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Generate compelling landing page content that converts visitors into leads or customers through persuasive copy and clear calls-to-action.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">Landing Page Content</span>
+                            <span class="tech-tag">Conversion Copy</span>
+                            <span class="tech-tag">CTA Optimization</span>
+                            <span class="tech-tag">Lead Generation</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Campaign Goals → Audience Analysis → Content Generation → Landing Page → CTA → Conversion</div>
+                            <div class="architecture-item">Objective Data → Analysis → Generation → Page → Optimization → Results</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Campaign objectives</li>
+                                <li>Audience personas</li>
+                                <li>Conversion goals</li>
+                                <li>Brand messaging</li>
+                                <li>Competitor analysis</li>
+                                <li>Performance benchmarks</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">90-95%</div>
+                                <div class="metric-label">Content Quality</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">Conversion Rate</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">4-6 hours</div>
+                                <div class="metric-label">Content Generation</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Media Content Creation -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">📱</div>
+                        <div>
+                            <div class="card-title">Social Media Content</div>
+                            <div class="card-subtitle">Platform Engagement</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Generate engaging social media content tailored to different platforms and audience segments to increase brand visibility and engagement.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">Social Media Content</span>
+                            <span class="tech-tag">Platform Optimization</span>
+                            <span class="tech-tag">Audience Engagement</span>
+                            <span class="tech-tag">Brand Awareness</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Brand Data → Platform Analysis → Content Generation → Social Media → Engagement → Growth</div>
+                            <div class="architecture-item">Content Data → Analysis → Generation → Platform → Engagement → Results</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Brand guidelines</li>
+                                <li>Platform specifications</li>
+                                <li>Audience preferences</li>
+                                <li>Content performance</li>
+                                <li>Trending topics</li>
+                                <li>Competitor analysis</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">90-95%</div>
+                                <div class="metric-label">Content Quality</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">70-90%</div>
+                                <div class="metric-label">Social Engagement</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">50-70%</div>
+                                <div class="metric-label">Brand Awareness</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Customer Journey Narrative Summaries -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">🗺️</div>
+                        <div>
+                            <div class="card-title">Customer Journey Narratives</div>
+                            <div class="card-subtitle">Experience Documentation</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Generate comprehensive narratives of customer journeys to understand touchpoints, pain points, and opportunities for improvement.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">Journey Narratives</span>
+                            <span class="tech-tag">Experience Analysis</span>
+                            <span class="tech-tag">Touchpoint Mapping</span>
+                            <span class="tech-tag">Customer Insights</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Journey Data → Touchpoint Analysis → Narrative Generation → Journey Mapping → Insights → Optimization</div>
+                            <div class="architecture-item">Experience Data → Analysis → Narratives → Mapping → Insights → Improvement</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Customer interaction data</li>
+                                <li>Touchpoint information</li>
+                                <li>Journey stages</li>
+                                <li>Pain points</li>
+                                <li>Satisfaction metrics</li>
+                                <li>Improvement opportunities</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">90-95%</div>
+                                <div class="metric-label">Narrative Quality</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">Journey Understanding</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">6-8 hours</div>
+                                <div class="metric-label">Narrative Generation</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </section>
+        </div>
+
+        <!-- Agentic AI Use Cases -->
+        <div id="agentic" class="content-section">
+            <h2 class="section-title">🤖 Agentic AI Systems</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem;">
+                Autonomous AI agents that can reason, plan, and execute complex marketing operations and customer relationship management workflows
+            </p>
+
+            <div class="card-grid">
+                <!-- Campaign Orchestration Agent -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">🎯</div>
+                        <div>
+                            <div class="card-title">Campaign Orchestration</div>
+                            <div class="card-subtitle">Marketing Automation</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Orchestrate multi-channel marketing campaigns by coordinating content delivery, timing, and audience targeting across various platforms.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Campaign Orchestration</span>
+                            <span class="tech-tag">Multi-Channel Marketing</span>
+                            <span class="tech-tag">Content Coordination</span>
+                            <span class="tech-tag">Audience Targeting</span>
+                            <span class="tech-tag">Marketing Automation</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Campaign Goals → Channel Coordination → Content Delivery → Audience Targeting → Performance → Optimization</div>
+                            <div class="architecture-item">Strategy → Coordination → Delivery → Targeting → Results → Optimization</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Campaign objectives</li>
+                                <li>Channel performance</li>
+                                <li>Audience segments</li>
+                                <li>Content calendars</li>
+                                <li>Timing strategies</li>
+                                <li>Performance metrics</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Campaign Coordination</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">70-90%</div>
+                                <div class="metric-label">Multi-Channel Performance</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">Audience Engagement</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Budget Allocation Optimization Agent -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">💰</div>
+                        <div>
+                            <div class="card-title">Budget Allocation</div>
+                            <div class="card-subtitle">Resource Optimization</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Optimize marketing budget allocation across channels, campaigns, and audiences based on performance data and ROI predictions.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Budget Optimization</span>
+                            <span class="tech-tag">Resource Allocation</span>
+                            <span class="tech-tag">ROI Analysis</span>
+                            <span class="tech-tag">Performance Metrics</span>
+                            <span class="tech-tag">Cost Management</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Budget Data → Performance Analysis → Allocation Strategy → Optimization → Distribution → Results</div>
+                            <div class="architecture-item">Financial Data → Analysis → Strategy → Allocation → Optimization → ROI</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Historical performance data</li>
+                                <li>ROI metrics</li>
+                                <li>Channel effectiveness</li>
+                                <li>Budget constraints</li>
+                                <li>Market conditions</li>
+                                <li>Strategic priorities</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Budget Optimization</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">ROI Improvement</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">50-70%</div>
+                                <div class="metric-label">Cost Efficiency</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-time Personalization Agent -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">🎯</div>
+                        <div>
+                            <div class="card-title">Real-time Personalization</div>
+                            <div class="card-subtitle">Dynamic Content</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Deliver personalized content and experiences to customers in real-time based on their behavior, preferences, and context.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Real-time Personalization</span>
+                            <span class="tech-tag">Dynamic Content</span>
+                            <span class="tech-tag">Behavioral Analysis</span>
+                            <span class="tech-tag">Context Awareness</span>
+                            <span class="tech-tag">Customer Experience</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Customer Data → Behavior Analysis → Personalization → Content Delivery → Engagement → Optimization</div>
+                            <div class="architecture-item">Interaction Data → Analysis → Personalization → Delivery → Response → Improvement</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Real-time behavior data</li>
+                                <li>Customer preferences</li>
+                                <li>Context information</li>
+                                <li>Content library</li>
+                                <li>Personalization rules</li>
+                                <li>Performance metrics</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Personalization Accuracy</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">70-90%</div>
+                                <div class="metric-label">Customer Engagement</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">Conversion Rate</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Customer Journey Orchestration Agent -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">🗺️</div>
+                        <div>
+                            <div class="card-title">Customer Journey Orchestration</div>
+                            <div class="card-subtitle">Experience Management</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Orchestrate seamless customer journeys across touchpoints by coordinating interactions, content, and communications.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Journey Orchestration</span>
+                            <span class="tech-tag">Touchpoint Coordination</span>
+                            <span class="tech-tag">Experience Management</span>
+                            <span class="tech-tag">Cross-Channel Integration</span>
+                            <span class="tech-tag">Customer Engagement</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Customer Data → Journey Mapping → Touchpoint Coordination → Content Delivery → Experience → Optimization</div>
+                            <div class="architecture-item">Journey Data → Mapping → Coordination → Delivery → Experience → Improvement</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Customer journey data</li>
+                                <li>Touchpoint information</li>
+                                <li>Interaction history</li>
+                                <li>Content library</li>
+                                <li>Orchestration rules</li>
+                                <li>Performance metrics</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Journey Coordination</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">70-90%</div>
+                                <div class="metric-label">Customer Experience</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">Journey Completion</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lead Nurturing Automation Agent -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">🌱</div>
+                        <div>
+                            <div class="card-title">Lead Nurturing</div>
+                            <div class="card-subtitle">Relationship Building</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Automate lead nurturing workflows by delivering relevant content and interactions based on lead behavior and lifecycle stage.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Lead Nurturing</span>
+                            <span class="tech-tag">Workflow Automation</span>
+                            <span class="tech-tag">Content Delivery</span>
+                            <span class="tech-tag">Lifecycle Management</span>
+                            <span class="tech-tag">Relationship Building</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Lead Data → Lifecycle Analysis → Content Delivery → Nurturing → Engagement → Conversion</div>
+                            <div class="architecture-item">Lead Information → Analysis → Delivery → Nurturing → Engagement → Results</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Lead scoring data</li>
+                                <li>Lifecycle stage information</li>
+                                <li>Content preferences</li>
+                                <li>Engagement patterns</li>
+                                <li>Nurturing workflows</li>
+                                <li>Conversion criteria</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Nurturing Effectiveness</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">Lead Conversion</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">50-70%</div>
+                                <div class="metric-label">Relationship Quality</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cross-channel Coordination Agent -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">🔄</div>
+                        <div>
+                            <div class="card-title">Cross-channel Coordination</div>
+                            <div class="card-subtitle">Channel Integration</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Coordinate marketing efforts across multiple channels to ensure consistent messaging, optimal timing, and seamless customer experience.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Cross-channel Coordination</span>
+                            <span class="tech-tag">Channel Integration</span>
+                            <span class="tech-tag">Message Consistency</span>
+                            <span class="tech-tag">Timing Optimization</span>
+                            <span class="tech-tag">Customer Experience</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Channel Data → Coordination → Message Consistency → Timing → Integration → Results</div>
+                            <div class="architecture-item">Channel Information → Coordination → Consistency → Timing → Integration → Success</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Channel performance data</li>
+                                <li>Message templates</li>
+                                <li>Timing strategies</li>
+                                <li>Audience segments</li>
+                                <li>Integration protocols</li>
+                                <li>Performance metrics</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Channel Coordination</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">70-90%</div>
+                                <div class="metric-label">Message Consistency</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">Customer Experience</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <footer>
-            <p>✨ Built with cutting-edge AI technologies for the future of industry transformation</p>
+            <p>✨ Built with cutting-edge AI technologies for the future of CRM marketing and customer relationship management</p>
             <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary);">
-                This repository demonstrates the transformative power of AI across industries, providing practical insights and implementation guidance for the future of work.
+                Note: Implementation requires careful consideration of customer privacy, data security, and marketing ethics
             </p>
-            <a href="https://github.com/srinipusuluri/AIIndustryUseCases" class="github-link">
-                🌟 View on GitHub
-            </a>
         </footer>
     </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update navigation buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Find and activate the clicked button
+            event.target.classList.add('active');
+        }
+    </script>
 </body>
 </html>
